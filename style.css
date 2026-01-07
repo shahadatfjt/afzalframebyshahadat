@@ -1,0 +1,47 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 420px;
+}
+
+canvas {
+    width: 100%;
+    max-width: 360px;
+    height: auto;
+    background: #eee;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.controls input,
+.controls button {
+    width: 100%;
+    margin-top: 10px;
+}
+
+button {
+    padding: 10px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.credit-section {
+    font-size: 14px;
+    margin-top: 10px;
+}
