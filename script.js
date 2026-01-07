@@ -5,17 +5,18 @@ const upload = document.getElementById("upload");
 const zoom = document.getElementById("zoom");
 const downloadBtn = document.getElementById("download");
 
-// 🔥 High Resolution Canvas
-const DPR = window.devicePixelRatio || 1;
+// ✅ FIXED EXPORT SIZE
 const CANVAS_SIZE = 1080;
 
-canvas.width = CANVAS_SIZE * DPR;
-canvas.height = CANVAS_SIZE * DPR;
+// real canvas resolution (DOWNLOAD)
+canvas.width = CANVAS_SIZE;
+canvas.height = CANVAS_SIZE;
+
+// display size (MOBILE VIEW)
 canvas.style.width = "360px";
 canvas.style.height = "360px";
-ctx.scale(DPR, DPR);
 
-// Frame image
+// Frame
 const frame = new Image();
 frame.src = "frame.png";
 
@@ -27,7 +28,7 @@ let imgW = 0;
 let imgH = 0;
 let scale = 1;
 
-// Draw function
+// Draw
 function draw() {
     ctx.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
 
@@ -47,10 +48,10 @@ function draw() {
     ctx.drawImage(frame, 0, 0, CANVAS_SIZE, CANVAS_SIZE);
 }
 
-// Load frame first (mobile fix)
+// Show frame on load
 frame.onload = draw;
 
-// Upload image
+// Upload
 upload.addEventListener("change", function () {
     const file = this.files[0];
     if (!file) return;
@@ -82,7 +83,7 @@ zoom.addEventListener("input", () => {
     draw();
 });
 
-// Drag support
+// Drag (mouse)
 let isDragging = false;
 let startX, startY;
 
@@ -102,7 +103,7 @@ canvas.addEventListener("mousemove", e => {
 canvas.addEventListener("mouseup", () => isDragging = false);
 canvas.addEventListener("mouseleave", () => isDragging = false);
 
-// Touch support
+// Touch
 canvas.addEventListener("touchstart", e => {
     isDragging = true;
     const t = e.touches[0];
@@ -123,7 +124,7 @@ canvas.addEventListener("touchmove", e => {
 
 canvas.addEventListener("touchend", () => isDragging = false);
 
-// Download
+// Download (ALWAYS 1080×1080)
 downloadBtn.addEventListener("click", () => {
     const link = document.createElement("a");
     link.download = "framed-photo.png";
